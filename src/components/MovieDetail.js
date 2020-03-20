@@ -81,20 +81,18 @@ export default function MovieDetail(props) {
           <Typography variant="h4">
             Comments:
           </Typography>
-          <p>
-            <List>
-              <ListItem><b>Laura:</b> Cup cream, plunger pot saucer grounds a fair trade in black ut flavour. Cup mug, kopi-luwak espresso single shot est fair trade aged extra.</ListItem>
-              <Divider />
-              <ListItem><b>Juan:</b> Cup cream, plunger pot saucer grounds a fair trade in black ut flavour. Cup mug, kopi-luwak espresso single shot est fair trade aged extra.</ListItem>
-              <Divider />
-              <ListItem><b>Lena:</b> Cup cream, plunger pot saucer grounds a fair trade in black ut flavour. Cup mug, kopi-luwak espresso single shot est fair trade aged extra.</ListItem>
-              <Divider />
-              <ListItem>
-                <b>You:</b>
-                <TextareaAutosize rowsMin={10} cols={150} />
-              </ListItem>
-            </List>
-          </p>
+          <List>
+            <ListItem><b>Laura:</b> Cup cream, plunger pot saucer grounds a fair trade in black ut flavour. Cup mug, kopi-luwak espresso single shot est fair trade aged extra.</ListItem>
+            <Divider />
+            <ListItem><b>Juan:</b> Cup cream, plunger pot saucer grounds a fair trade in black ut flavour. Cup mug, kopi-luwak espresso single shot est fair trade aged extra.</ListItem>
+            <Divider />
+            <ListItem><b>Lena:</b> Cup cream, plunger pot saucer grounds a fair trade in black ut flavour. Cup mug, kopi-luwak espresso single shot est fair trade aged extra.</ListItem>
+            <Divider />
+            <ListItem>
+              <b>You:</b>
+              <TextareaAutosize rowsMin={10} cols={150} />
+            </ListItem>
+          </List>
         </div>
       </Dialog>
     </div>
