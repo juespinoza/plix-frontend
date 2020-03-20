@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import InfoIcon from '@material-ui/icons/Info';
+import { List, ListItem } from '@material-ui/core';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -21,6 +23,10 @@ const useStyles = makeStyles(theme => ({
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
   },
+  dialog: {
+    width: '80%',
+    margin: '10px auto',
+  }
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -57,19 +63,39 @@ export default function MovieDetail(props) {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Typography variant="h6">
-          Description:
-        </Typography>
-        <p>
-          {movie.author}
-        </p>
-        <Divider />
-        <Typography variant="h6">
-          Comments:
-        </Typography>
-        <p>
-          ....
-        </p>
+        <div className={classes.dialog} >
+          <Typography variant="h6">
+            Description:
+          </Typography>
+          <p>
+            {movie.author}
+          </p>
+          <Typography variant="h6">
+            Rate:
+          </Typography>
+          <p>
+            8/10
+          </p>
+          <br />
+          <Divider />
+          <Typography variant="h4">
+            Comments:
+          </Typography>
+          <p>
+            <List>
+              <ListItem><b>Laura:</b> Cup cream, plunger pot saucer grounds a fair trade in black ut flavour. Cup mug, kopi-luwak espresso single shot est fair trade aged extra.</ListItem>
+              <Divider />
+              <ListItem><b>Juan:</b> Cup cream, plunger pot saucer grounds a fair trade in black ut flavour. Cup mug, kopi-luwak espresso single shot est fair trade aged extra.</ListItem>
+              <Divider />
+              <ListItem><b>Lena:</b> Cup cream, plunger pot saucer grounds a fair trade in black ut flavour. Cup mug, kopi-luwak espresso single shot est fair trade aged extra.</ListItem>
+              <Divider />
+              <ListItem>
+                <b>You:</b>
+                <TextareaAutosize rowsMin={10} cols={150} />
+              </ListItem>
+            </List>
+          </p>
+        </div>
       </Dialog>
     </div>
   );
