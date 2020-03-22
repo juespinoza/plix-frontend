@@ -23,9 +23,10 @@ export default function Login(props) {
     return () => clearInterval(interval);
   });
 
-  const handleClickOpen = () => {
+  const handleLogOut = () => {
+    localStorage.removeItem('logged');
     setOpen(true);
-  };
+  }
 
   const handleClose = () => {
     if (userIslogged === true){
@@ -33,11 +34,14 @@ export default function Login(props) {
     }
   };
 
-  const handleLoginRequest = () => {
+  const handleLoginRequest = (el) => {
     console.log('in login.js');
     const emailInput = document.getElementById('login-email');
     const passInput = document.getElementById('login-pass');
 
+    if (el.key !== 'Enter') {
+      return false;
+    }
     if (emailInput.value !== '' && passInput.value !== '') {
       let user = { email: emailInput.value, password: passInput.value };
       props.handleLogin(user);
@@ -52,7 +56,7 @@ export default function Login(props) {
         aria-label="log out"
         color="inherit"
         variant="outlined"
-        onClick={handleClickOpen}
+        onClick={handleLogOut}
       >
         <ExitToAppRoundedIcon />
       </IconButton>
@@ -77,6 +81,7 @@ export default function Login(props) {
               id="login-pass"
               label="Password"
               type="password"
+              onKeyPress={handleLoginRequest}
               fullWidth
             />
             <br />

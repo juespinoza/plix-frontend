@@ -64,7 +64,7 @@ class App extends React.Component {
         <MoviesGrid
           movies={this.state.movies}
           currentUser={this.state.currentUser}
-          isLogged={this.state.isLogged}
+          userIsLogged={localStorage.getItem('logged')}
         />
       </div>
     );

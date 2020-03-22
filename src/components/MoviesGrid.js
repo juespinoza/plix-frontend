@@ -22,19 +22,19 @@ const useStyles = makeStyles(theme => ({
 
 export default function TitlebarGridList(props) {
   const classes = useStyles();
-  const { movies, currentUser } = props;
+  const { movies, userIsLogged } = props;
 
   return (
     <div className={classes.root}>
       <GridList cellHeight={350} className={classes.gridList} cols={5}>
         { 
-          (!currentUser) && (
+          (!userIsLogged) && (
             <GridListTile key="Subheader" cols={5} style={{ height: 'auto' }}>
               <ListSubheader component="div">No access to movies.</ListSubheader>
             </GridListTile>
           )
         }
-        { (currentUser) && (
+        { (
             movies.map(movie => (
               <GridListTile key={movie.image}>
                 <img src={movie.image} alt={movie.title} />
