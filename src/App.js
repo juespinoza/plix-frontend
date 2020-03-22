@@ -13,7 +13,7 @@ class App extends React.Component {
       findTitle: '',
       movies: [],
       currentUser: null,
-      logged: sessionStorage.getItem('logged'),
+      logged: localStorage.getItem('logged'),
     }
     this.setCurrentUser = this.setCurrentUser.bind(this);
     this.handleMoviesRequest = this.handleMoviesRequest.bind(this);
@@ -24,8 +24,11 @@ class App extends React.Component {
   setCurrentUser(user) {
     console.log('this is the user state: ', user);
     this.setState({ currentUser: user });
-    sessionStorage.setItem('logged', true);
-
+    if (user !== null) {
+      localStorage.setItem('logged', true);
+    } else {
+      localStorage.setItem('logged', false);
+    }
   }
 
   handleMoviesRequest(newRealeases){

@@ -67,15 +67,15 @@ export default function MovieDetail(props) {
           <Typography variant="h6">
             Description:
           </Typography>
-          <p>
+          <div>
             {movie.author}
-          </p>
+          </div>
           <Typography variant="h6">
             Rate:
           </Typography>
-          <p>
+          <div>
             8/10
-          </p>
+          </div>
           <br />
           <Divider />
           <br />

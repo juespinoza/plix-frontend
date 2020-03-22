@@ -1,27 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { IconButton, Divider, Collapse } from '@material-ui/core';
+import { IconButton, Divider } from '@material-ui/core';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import TextField from '@material-ui/core/TextField';
 import SignUp from './SignUp';
-import Alert from '@material-ui/lab/Alert';
-import CloseIcon from '@material-ui/icons/Close';
 
 export default function Login(props) {
+  let userIslogged = localStorage.getItem('logged');
   const [open, setOpen] = React.useState(false);
-  const [errorAlertOpen, setErrorAlert] = React.useState(true);
+
+  useEffect(() => {
+    let userIslogged = localStorage.getItem('logged');
+    const interval = setInterval(() => {
+      setOpen(!userIslogged);
+      console.log('login open', open);
+    }, 5000);
+    return () => clearInterval(interval);
+  });
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
-    if (props.userLogged === true){
+    if (userIslogged === true){
       setOpen(false);
     }
   };
@@ -35,6 +42,7 @@ export default function Login(props) {
       let user = { email: emailInput.value, password: passInput.value };
       props.handleLogin(user);
     }
+    setOpen(false);
   }
 
   return (
@@ -55,25 +63,6 @@ export default function Login(props) {
           <Divider />
           <DialogContent>
             <DialogContentText>
-              <Collapse in={errorAlertOpen}>
-                <Alert 
-                  severity="warning"
-                  action={
-                    <IconButton
-                      aria-label="close"
-                      color="inherit"
-                      size="small"
-                      onClick={() => {
-                        setErrorAlert(false);
-                      }}
-                    >
-                      <CloseIcon fontSize="inherit" />
-                    </IconButton>
-                  }
-                >
-                  You are disconnected.
-                </Alert>
-              </Collapse>
             </DialogContentText>
             <TextField
               autoFocus
