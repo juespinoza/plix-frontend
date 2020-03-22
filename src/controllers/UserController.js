@@ -13,7 +13,7 @@ class UserController {
         })
         .catch(error => console.error('Error:', error));
     }
-    signUp(data, lala){
+    signUp(data, createUser){
         console.log('raw data: ', data);
         console.log('json data', JSON.stringify(data));
         const options =  {
@@ -25,7 +25,7 @@ class UserController {
         .then(response => response.json())
         .then((responseData) =>{
             console.log('Success:', responseData);
-            lala(responseData);
+            createUser(responseData);
         })
         .catch(error => console.error('Error:', error));
     }
