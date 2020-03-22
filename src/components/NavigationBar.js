@@ -98,7 +98,7 @@ class NavigationBar extends React.Component
   };
 
   render(){
-    const { classes } = this.props;
+    const { classes, userIsLogged } = this.props;
 
     return (
       <div className={classes.grow}>
@@ -128,7 +128,7 @@ class NavigationBar extends React.Component
                 <MyProfile />
             </div>
             <div className={classes.sectionDesktop}>
-              <Login handleLogin={this.handleLoginRequest.bind(this)} />
+              <Login handleLogin={this.handleLoginRequest.bind(this)} userLogged={userIsLogged} />
             </div>
           </Toolbar>
         </AppBar>

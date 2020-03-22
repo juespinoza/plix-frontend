@@ -13,6 +13,7 @@ class App extends React.Component {
       findTitle: '',
       movies: [],
       currentUser: null,
+      logged: sessionStorage.getItem('logged'),
     }
     this.setCurrentUser = this.setCurrentUser.bind(this);
     this.handleMoviesRequest = this.handleMoviesRequest.bind(this);
@@ -23,6 +24,8 @@ class App extends React.Component {
   setCurrentUser(user) {
     console.log('this is the user state: ', user);
     this.setState({ currentUser: user });
+    sessionStorage.setItem('logged', true);
+
   }
 
   handleMoviesRequest(newRealeases){
@@ -53,10 +56,12 @@ class App extends React.Component {
         <NavigationBar 
           updateMoviesGrid={this.updateMovies}
           handleLogin={this.handleLogin}
+          userIsLogged={this.state.isLogged}
         />
         <MoviesGrid
           movies={this.state.movies}
           currentUser={this.state.currentUser}
+          isLogged={this.state.isLogged}
         />
       </div>
     );

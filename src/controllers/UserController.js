@@ -5,15 +5,11 @@ class UserController {
                 body: JSON.stringify(data),
                 headers:{ 'Content-Type': 'application/json' }
         }
-        fetch('https://plix-backend.herokuapp.com/api/userByEmail/User', options)
+        fetch('https://plix-backend.herokuapp.com/api/userLogin/User', options)
         .then(response => response.json())
         .then((userData) =>{
             console.log('Success:', userData);
-
-            if (userData.length === 0) {
-                setUser(null);
-            }
-            setUser(userData[0]);
+            setUser(userData);
         })
         .catch(error => console.error('Error:', error));
     }
