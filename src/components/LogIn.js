@@ -8,8 +8,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { IconButton, Divider } from '@material-ui/core';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import TextField from '@material-ui/core/TextField';
+import SignUp from './SignUp';
 
-export default function FormDialog(props) {
+export default function Login(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -19,6 +20,17 @@ export default function FormDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleLoginRequest = () => {
+    console.log('in login.js');
+    const emailInput = document.getElementById('login-email');
+    const passInput = document.getElementById('login-pass');
+
+    if (emailInput.value !== '') {
+      let user = { email: emailInput.value };
+      props.handleLogin(user);
+    }
+  }
 
   return (
     <div>
@@ -32,11 +44,11 @@ export default function FormDialog(props) {
         <ExitToAppRoundedIcon />
       </IconButton>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Log In</DialogTitle>
+        <DialogTitle id="form-dialog-title">Sign In</DialogTitle>
         <Divider />
         <DialogContent>
           <DialogContentText>
-            You are logged out.
+            ...
           </DialogContentText>
           <TextField
             autoFocus
@@ -53,13 +65,17 @@ export default function FormDialog(props) {
             type="password"
             fullWidth
           />
+          <br />
+          <div>
+            <SignUp />
+          </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button variant="outlined" onClick={handleClose} color="secondary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
-            OK
+          <Button variant="outlined" onClick={handleLoginRequest} color="primary">
+            Login
           </Button>
         </DialogActions>
       </Dialog>

@@ -4,8 +4,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { IconButton, Divider, Checkbox } from '@material-ui/core';
-import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
+import { Divider, Checkbox } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -23,15 +22,9 @@ export default function FormDialog(props) {
 
   return (
     <div>
-      <IconButton
-        edge="end"
-        aria-label="log out"
-        color="inherit"
-        variant="outlined"
-        onClick={handleClickOpen}
-      >
-        <ExitToAppRoundedIcon />
-      </IconButton>
+      <Button color="primary" aria-label="signup" onClick={handleClickOpen}>
+        Sign Up
+      </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Sing Up</DialogTitle>
         <Divider />
@@ -45,10 +38,10 @@ export default function FormDialog(props) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button  variant="outlined" onClick={handleClose} color="secondary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button  variant="outlined" onClick={handleClose} color="primary">
             Register
           </Button>
         </DialogActions>

@@ -80,17 +80,22 @@ class NavigationBar extends React.Component
       title: '',
     }
   }
+  
+  handleLoginRequest = (user) => {
+    console.log('in navigationBar.js', user);
+    this.props.handleLogin(user);
+  }
 
-  updateTitle(newTitle)
+  updateTitle(el)
 	{
-		this.setState({title : newTitle.target.value});
-		if (newTitle.key === "Enter") {
-      newTitle.preventDefault();
+		this.setState({title : el.target.value});
+		if (el.key === "Enter") {
+      el.preventDefault();
       console.log("title",this.state.title);
       console.log("props",this.props)
 			this.props.updateMoviesGrid(this.state.title);
 		}
-	}
+  };
 
   render(){
     const { classes } = this.props;
@@ -123,7 +128,7 @@ class NavigationBar extends React.Component
                 <MyProfile />
             </div>
             <div className={classes.sectionDesktop}>
-              <Login />
+              <Login handleLogin={this.handleLoginRequest.bind(this)} />
             </div>
           </Toolbar>
         </AppBar>

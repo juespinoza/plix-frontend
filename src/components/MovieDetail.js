@@ -78,6 +78,7 @@ export default function MovieDetail(props) {
           </p>
           <br />
           <Divider />
+          <br />
           <Typography variant="h4">
             Comments:
           </Typography>
