@@ -39,9 +39,6 @@ export default function Login(props) {
     const emailInput = document.getElementById('login-email');
     const passInput = document.getElementById('login-pass');
 
-    if (el.key !== 'Enter') {
-      return false;
-    }
     if (emailInput.value !== '' && passInput.value !== '') {
       let user = { email: emailInput.value, password: passInput.value };
       props.handleLogin(user);
@@ -81,7 +78,6 @@ export default function Login(props) {
               id="login-pass"
               label="Password"
               type="password"
-              onKeyPress={handleLoginRequest}
               fullWidth
             />
             <br />
