@@ -11,7 +11,16 @@ class App extends React.Component {
     this.state = {
       findTitle: '',
       movies: [],
+      currentUser: null,
     }
+    this.handleCurrentUser = this.handleCurrentUser.bind(this);
+  }
+
+  handleCurrentUser(user) {
+    this.setState(state => ({
+        currentUser: user,
+      })
+    );
   }
 
   componentDidMount(){
@@ -32,8 +41,15 @@ class App extends React.Component {
   render (){
     return (
       <div className="App">
-        <NavigationBar updateMoviesGrid={this.updateMovies.bind(this)} />
-        <MoviesGrid movies={this.state.movies} />
+        <NavigationBar 
+          updateMoviesGrid={this.updateMovies.bind(this)} 
+          currentUser={this.state.currentUser}
+          setCurrentUser={this.handleClick}
+        />
+        <MoviesGrid
+          movies={this.state.movies}
+          currentUser={this.state.currentUser}
+        />
       </div>
     );
   }
