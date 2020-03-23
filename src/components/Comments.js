@@ -10,7 +10,7 @@ export default function Comments(props) {
                 { (comments.length !== 0) && (
                         comments.map(comment => (
                             <ListItem>
-                                <b>{comment.email}:</b>
+                                <b>{comment.email}: </b>
                                 {comment.comment}
                             </ListItem>
                         ))

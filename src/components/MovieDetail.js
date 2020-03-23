@@ -64,12 +64,14 @@ class MovieDetail extends React.Component {
   render(){
     const { classes, movie } = this.props;
 
+    const currentEmail = localStorage.getItem('userEmail');
+
     return(
       <div>
         <IconButton variant="outlined" aria-label={`info about movie-${movie.id}`} className={classes.icon} onClick={this.handleDetailsOpen}>
             <InfoIcon />
         </IconButton>
-        <Dialog fullScreen open={this.state.detailOpen} onClose={this.handleDetailsClose} TransitionComponent={React.forwardRef(function Transition(props, ref){ return <Slide direction="up" ref={ref} {...props} /> })}>
+        <Dialog fullScreen open={this.state.detailOpen} onClose={this.handleDetailsClose} >
           <AppBar className={classes.appBar}>
             <Toolbar>
               <IconButton edge="start" color="inherit" onClick={this.handleDetailsClose} aria-label="close">
@@ -96,18 +98,20 @@ class MovieDetail extends React.Component {
             <br />
             <Divider />
             <br />
-            <Typography variant="h4">
-              Comments:
-            </Typography>
+            <Typography variant="h4">Comments: </Typography>
             <Comments comments={this.state.comments} />
             <Divider />
             <div>
-              <b>You:</b>
+              <br />
               <TextareaAutosize id="comment-text" rowsMin={10} cols={150} />
               <br />
-              <Button variant="outlined" onClick={this.handleAddComment} color="primary">
-                Send Comment
-              </Button>
+              <i><b>Commenting as:</b> {currentEmail}</i>
+              <br />
+              <div width="100%" style={{"text-align": "right"}}>
+                <Button variant="outlined" onClick={this.handleAddComment} color="primary">
+                  Send Comment
+                </Button>
+              </div>
             </div>
           </div>
         </Dialog>

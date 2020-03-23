@@ -87,9 +87,6 @@ export default function Login(props) {
             </div>
           </DialogContent>
           <DialogActions>
-            <Button variant="outlined" onClick={handleClose} color="secondary">
-              Cancel
-            </Button>
             <Button variant="outlined" onClick={handleLoginRequest} color="primary">
               Login
             </Button>
