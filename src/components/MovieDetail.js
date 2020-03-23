@@ -83,6 +83,8 @@ class MovieDetail extends React.Component {
             </Toolbar>
           </AppBar>
           <div className={classes.dialog} >
+            <Typography variant="h4">Movie info: </Typography>
+            <br />
             <Typography variant="h6">
               Description:
             </Typography>
@@ -101,18 +103,21 @@ class MovieDetail extends React.Component {
             <Typography variant="h4">Comments: </Typography>
             <Comments comments={this.state.comments} />
             <Divider />
-            <div>
-              <br />
-              <TextareaAutosize id="comment-text" rowsMin={10} cols={150} />
-              <br />
-              <i><b>Commenting as:</b> {currentEmail}</i>
-              <br />
-              <div width="100%" style={{"text-align": "right"}}>
-                <Button variant="outlined" onClick={this.handleAddComment} color="primary">
-                  Send Comment
-                </Button>
-              </div>
-            </div>
+            { (localStorage.getItem('userEmail')) && (
+                <div>
+                  <br />
+                  <TextareaAutosize id="comment-text" rowsMin={10} cols={150} />
+                  <br />
+                  <i><b>Commenting as:</b> {currentEmail}</i>
+                  <br />
+                  <div width="100%" style={{"text-align": "right"}}>
+                    <Button variant="outlined" onClick={this.handleAddComment} color="primary">
+                      Send Comment
+                    </Button>
+                  </div>
+                </div>
+              )
+            }
           </div>
         </Dialog>
       </div>

@@ -8,8 +8,8 @@ export default function Comments(props) {
         <React.Fragment>
             <List>
                 { (comments.length !== 0) && (
-                        comments.map(comment => (
-                            <ListItem>
+                        comments.map((comment, id) => (
+                            <ListItem key={comment._id}>
                                 <b>{comment.email}: </b>
                                 {comment.comment}
                             </ListItem>
