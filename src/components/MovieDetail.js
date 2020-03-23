@@ -104,13 +104,13 @@ class MovieDetail extends React.Component {
             <Comments comments={this.state.comments} />
             <Divider />
             { (localStorage.getItem('userEmail')) && (
-                <div>
+                <div style={{'width': '71%'}}>
                   <br />
                   <TextareaAutosize id="comment-text" rowsMin={10} cols={150} />
                   <br />
                   <i><b>Commenting as:</b> {currentEmail}</i>
                   <br />
-                  <div width="100%" style={{"text-align": "right"}}>
+                  <div width="100%" style={{"textAlign": "right"}}>
                     <Button variant="outlined" onClick={this.handleAddComment} color="primary">
                       Send Comment
                     </Button>
