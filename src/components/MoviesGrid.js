@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function TitlebarGridList(props) {
   const classes = useStyles();
-  const { movies } = props;
+  const movies = props.movies;
 
   return (
     <div className={classes.root}>
