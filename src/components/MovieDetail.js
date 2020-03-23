@@ -50,6 +50,7 @@ class MovieDetail extends React.Component {
     const commentText = { 
       comment: document.getElementById('comment-text').value,
       movieId: movieId,
+      email: localStorage.getItem('userEmail'),
     };
     this.setState({ comment: document.getElementById('comment-text').value });
     console.log('Enviando comentario', this.state.comment);
