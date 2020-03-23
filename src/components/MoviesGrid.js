@@ -28,7 +28,7 @@ export default function TitlebarGridList(props) {
       <GridList cellHeight={350} className={classes.gridList} cols={5}>
         { (
             movies.map(movie => (
-              <GridListTile key={movie.image}>
+              <GridListTile key={movie.id}>
                 <img src={movie.image} alt={movie.title} />
                 <GridListTileBar
                     title={movie.title}
