@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import Login from './LogIn';
-import MyProfile from './MyProfile';
 
 const useStyles = theme => ({
   grow: {
@@ -80,11 +79,6 @@ class NavigationBar extends React.Component
       title: '',
     }
   }
-  
-  handleLoginRequest = (user) => {
-    console.log('in navigationBar.js', user);
-    this.props.handleLogin(user);
-  }
 
   updateTitle(el)
 	{
@@ -98,7 +92,7 @@ class NavigationBar extends React.Component
   };
 
   render(){
-    const { classes, userIsLogged } = this.props;
+    const { classes } = this.props;
 
     return (
       <div className={classes.grow}>
@@ -125,10 +119,9 @@ class NavigationBar extends React.Component
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-                <MyProfile />
             </div>
             <div className={classes.sectionDesktop}>
-              <Login handleLogin={this.handleLoginRequest.bind(this)} userLogged={userIsLogged} />
+              <Login />
             </div>
           </Toolbar>
         </AppBar>

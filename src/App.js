@@ -24,13 +24,6 @@ class App extends React.Component {
   setCurrentUser(user) {
     console.log('this is the user state: ', user);
     this.setState({ currentUser: user });
-    if (user !== null) {
-      localStorage.setItem('logged', true);
-      localStorage.setItem('userEmail', user.email);
-    } else {
-      localStorage.setItem('logged', false);
-      localStorage.removeItem('userEmail');
-    }
   }
 
   handleMoviesRequest(newRealeases){
@@ -60,7 +53,7 @@ class App extends React.Component {
       <div className="App">
         <NavigationBar 
           updateMoviesGrid={this.updateMovies}
-          handleLogin={this.handleLogin}
+          setCurrentUser={this.setCurrentUser.bind(this)}
           userIsLogged={this.state.isLogged}
         />
         <MoviesGrid

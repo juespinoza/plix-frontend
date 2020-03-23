@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import MovieDetail from './MovieDetail';
 
 const useStyles = makeStyles(theme => ({
@@ -22,17 +21,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function TitlebarGridList(props) {
   const classes = useStyles();
-  const { movies, userIsLogged } = props;
+  const { movies } = props;
 
   return (
     <div className={classes.root}>
       <GridList cellHeight={350} className={classes.gridList} cols={5}>
-        { 
-          (!userIsLogged) && (
-            <GridListTile key="Subheader" cols={5} style={{ height: 'auto' }}>
-            </GridListTile>
-          )
-        }
         { (
             movies.map(movie => (
               <GridListTile key={movie.image}>
