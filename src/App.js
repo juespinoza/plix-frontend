@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import NavigationBar from './components/NavigationBar';
-import MoviesGrid from './components/MoviesGrid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';

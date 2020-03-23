@@ -4,11 +4,14 @@ class MovieFinder {
         //console.log("entreCreate Data",idArray)
         console.log("item",item)
         const baseURLImg = "https://image.tmdb.org/t/p/w200";
+        const noImageUrl = "/no_image.png";
+
+        const imageUrl = (!item.poster_path) ? noImageUrl : `${baseURLImg}${item.poster_path}`;
         
         return {  
         
             id: item.id,
-            image: `${baseURLImg}${item.poster_path}`,
+            image: imageUrl,
             title: item.title,
             author: item.overview,     
             };
