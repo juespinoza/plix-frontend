@@ -5,8 +5,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { IconButton, Divider } from '@material-ui/core';
-import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
+import { Divider } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import SignUp from './SignUp';
 
@@ -36,7 +35,6 @@ export default function Login(props) {
   };
 
   const handleLoginRequest = (el) => {
-    console.log('in login.js');
     const emailInput = document.getElementById('login-email');
     const passInput = document.getElementById('login-pass');
 
@@ -49,15 +47,15 @@ export default function Login(props) {
 
   return (
     <div>
-      <IconButton
+      <Button
         edge="end"
         aria-label="log out"
         color="inherit"
-        variant="outlined"
+        size="small"
         onClick={handleLogOut}
       >
-        <ExitToAppRoundedIcon />
-      </IconButton>
+        Log out
+      </Button>
       {
         (!props.userLogged) && (
           <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">

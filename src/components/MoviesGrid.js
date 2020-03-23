@@ -30,7 +30,6 @@ export default function TitlebarGridList(props) {
         { 
           (!userIsLogged) && (
             <GridListTile key="Subheader" cols={5} style={{ height: 'auto' }}>
-              <ListSubheader component="div">No access to movies.</ListSubheader>
             </GridListTile>
           )
         }

@@ -53,7 +53,6 @@ export default function FormDialog(props) {
             aria-label="log out"
             color="inherit"
             variant="outlined"
-            onClick={handleClickOpen}
         >
             <AccountCircle />
         </IconButton>
