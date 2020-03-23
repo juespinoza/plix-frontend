@@ -1,13 +1,9 @@
 import React from 'react';
 import './App.css';
 import NavigationBar from './components/NavigationBar';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
 import MovieFinder from './controllers/MovieFinder';
 import UserController from './controllers/UserController';
-import MovieDetail from './components/MovieDetail';
-import { withStyles } from '@material-ui/core';
+import MoviesGrid from './components/MoviesGrid';
 
 class App extends React.Component {
   constructor(){
@@ -37,10 +33,10 @@ class App extends React.Component {
   }
 
   updateMovies(title){
+        this.setState({ movies: [] })
     if(title !== "") {
       MovieFinder.findTitle(title, this.handleMoviesRequest.bind(this));
     } else {
-      this.setState({ movies: [] })
       MovieFinder.findNewReleases(this.handleMoviesRequest.bind(this));
     }
   }
@@ -53,7 +49,6 @@ class App extends React.Component {
   }
   
   render (){
-    const { classes } = this.props;
     return (
       <div className="App">
         <NavigationBar 
@@ -61,41 +56,10 @@ class App extends React.Component {
           setCurrentUser={this.setCurrentUser.bind(this)}
           userIsLogged={this.state.isLogged}
         />
-        <div className={classes.root}>
-          <GridList cellHeight={350} className={classes.gridList} cols={5}>
-            { (
-                this.state.movies.map(movie => (
-                  <GridListTile key={movie.image}>
-                    <img src={movie.image} alt={movie.title} />
-                    <GridListTileBar
-                        title={movie.title}
-                        subtitle={<span>Author: {movie.author}</span>}
-                        actionIcon={
-                        <MovieDetail movie={movie} />
-                        }
-                    />
-                  </GridListTile>
-                ))
-              )
-            }
-          </GridList>
-        </div>
+        <MoviesGrid movies={this.state.movies} />
       </div>
     );
   }
 }
 
-const useStyles = theme => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
-    width: '100%',
-  },
-  gridList: {
-    width: '90%',
-  },
-});
-export default withStyles(useStyles)(App);
+export default App;
