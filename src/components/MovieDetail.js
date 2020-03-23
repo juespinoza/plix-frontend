@@ -46,19 +46,21 @@ class MovieDetail extends React.Component {
   handleAddComment(el) {
     el.preventDefault();
     const movieId = this.props.movie.id;
-    const commentText = { 
-      comment: document.getElementById('comment-text').value,
-      movieId: movieId,
-      email: localStorage.getItem('userEmail'),
-    };
-    this.setState({ comment: document.getElementById('comment-text').value });
-    console.log('Enviando comentario', this.state.comment);
-    CommentController.createComment(commentText, (newComment) => {
-      console.log('after comment added', newComment);
-      let comments = this.state.comments;
-      comments.push(newComment);
-      this.handleCommentsRequest(comments);
-    })
+    if (document.getElementById('comment-text').value !== '') {
+      const commentText = { 
+        comment: document.getElementById('comment-text').value,
+        movieId: movieId,
+        email: localStorage.getItem('userEmail'),
+      };
+      this.setState({ comment: document.getElementById('comment-text').value });
+      console.log('Enviando comentario', this.state.comment);
+      CommentController.createComment(commentText, (newComment) => {
+        console.log('after comment added', newComment);
+        let comments = this.state.comments;
+        comments.push(newComment);
+        this.handleCommentsRequest(comments);
+      })
+    }
   }
 
   render(){
