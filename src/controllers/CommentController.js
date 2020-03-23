@@ -13,5 +13,23 @@ class CommentController {
         })
         .catch(error => console.error('Error:', error));
     }
+    createComment(data, setComment) {
+        const options =  {
+            method: 'POST',
+            mode:"cors",
+            body: JSON.stringify(data),
+            headers:{ 'Content-Type': 'application/json' }
+        }
+        console.log("Guardando");
+        fetch ('https://plix-backend.herokuapp.com/api/createComment/Comment', options)
+        .then ((response) => {
+            console.log("Comment saved", response);
+            return response.json();
+        })
+        .then((newComment) =>{
+            console.log('Success:', newComment);
+            setComment(newComment);
+        })
+    }
 }
 export default new CommentController();

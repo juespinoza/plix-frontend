@@ -25,6 +25,7 @@ export default function Login(props) {
 
   const handleLogOut = () => {
     localStorage.removeItem('logged');
+    localStorage.removeItem('userEmail');
     setOpen(true);
   }
 

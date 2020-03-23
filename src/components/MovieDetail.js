@@ -12,53 +12,71 @@ import InfoIcon from '@material-ui/icons/Info';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Comments from './Comments';
 import CommentController from '../controllers/CommentController';
+import Button from '@material-ui/core/Button';
 
 class MovieDetail extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      comment: '',
       comments: [],
       detailOpen: false,
     }
     this.handleDetailsOpen = this.handleDetailsOpen.bind(this);
     this.handleDetailsClose = this.handleDetailsClose.bind(this);
     this.handleCommentsRequest = this.handleCommentsRequest.bind(this);
+    this.handleAddComment = this.handleAddComment.bind(this);
+    this.getComments = this.getComments.bind(this);
   }
 
   handleDetailsOpen(){
     this.setState({detailOpen: true});
+    this.getComments();
   }
   handleDetailsClose(){
     this.setState({detailOpen: false});
   }
-  componentDidMount(){
-      CommentController.getAllComments(this.props.movieId, this.handleCommentsRequest);
+  getComments(){
+    const movieId = { movieId: this.props.movie.id }
+    CommentController.getAllComments(movieId, this.handleCommentsRequest);
   }
   handleCommentsRequest(comments) {
       this.setState({ comments: comments });
+  }
+  handleAddComment(el) {
+    el.preventDefault();
+    const movieId = this.props.movie.id;
+    const commentText = { 
+      comment: document.getElementById('comment-text').value,
+      movieId: movieId,
+    };
+    this.setState({ comment: document.getElementById('comment-text').value });
+    console.log('Enviando comentario', this.state.comment);
+    CommentController.createComment(commentText, (newComment) => {
+      console.log('after comment added', newComment);
+      let comments = this.state.comments;
+      comments.push(newComment);
+      this.handleCommentsRequest(comments);
+    })
   }
 
   render(){
     const { classes, movie } = this.props;
 
-    const transition = React.forwardRef(function Transition(props, ref) {
-      return <Slide direction="up" ref={ref} {...props} />;
-    });
-
     return(
       <div>
-        <IconButton variant="outlined" aria-label={`info about ${movie.title}`} className={classes.icon} onClick={this.handleDetailsOpen}>
+        <IconButton variant="outlined" aria-label={`info about movie-${movie.id}`} className={classes.icon} onClick={this.handleDetailsOpen}>
             <InfoIcon />
         </IconButton>
-        <Dialog fullScreen open={this.state.detailOpen} onClose={this.handleDetailsClose} TransitionComponent={transition}>
+        <Dialog fullScreen open={this.state.detailOpen} onClose={this.handleDetailsClose} TransitionComponent={React.forwardRef(function Transition(props, ref){ return <Slide direction="up" ref={ref} {...props} /> })}>
           <AppBar className={classes.appBar}>
             <Toolbar>
               <IconButton edge="start" color="inherit" onClick={this.handleDetailsClose} aria-label="close">
                 <CloseIcon />
               </IconButton>
               <Typography variant="h6" className={classes.title}>
-                {movie.title}
+                {movie.title} ({movie.id})
               </Typography>
             </Toolbar>
           </AppBar>
@@ -85,7 +103,11 @@ class MovieDetail extends React.Component {
             <Divider />
             <div>
               <b>You:</b>
-              <TextareaAutosize rowsMin={10} cols={150} />
+              <TextareaAutosize id="comment-text" rowsMin={10} cols={150} />
+              <br />
+              <Button variant="outlined" onClick={this.handleAddComment} color="primary">
+                Send Comment
+              </Button>
             </div>
           </div>
         </Dialog>
@@ -110,5 +132,6 @@ const classes = theme => ({
     margin: '10px auto',
   }
 });
+
 
 export default withStyles(classes)(MovieDetail);

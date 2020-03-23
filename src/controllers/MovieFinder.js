@@ -7,7 +7,7 @@ class MovieFinder {
         
         return {  
         
-            id: idArray,
+            id: item.id,
             image: `${baseURLImg}${item.poster_path}`,
             title: item.title,
             author: item.overview,     
